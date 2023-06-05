@@ -1,4 +1,5 @@
 import PostsList from "@/components/posts-list/PostsList";
+import SearchForm from "@/components/search-form/SearchForm";
 import { IPostPreview } from "@/types/post.interface";
 import Container from "@/ui/container/Container";
 import Heading from "@/ui/heading/Heading";
@@ -13,6 +14,7 @@ const Blog: FC<IBlog> = ({ posts }) => {
 		<div>
 			<Container>
 				<Heading>Блог</Heading>
+				<SearchForm />
 				<PostsList posts={posts} />
 			</Container>
 		</div>

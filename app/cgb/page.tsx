@@ -4,7 +4,7 @@ import { IPage } from "@/types/page.interface";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-	title: "Блог",
+	title: "Основы CG",
 };
 
 const CGBPage = async () => {

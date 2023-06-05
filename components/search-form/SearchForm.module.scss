@@ -1,0 +1,34 @@
+.root {
+	display: flex;
+	max-width: 500px;
+	margin: 0 auto 40px;
+	gap: 16px;
+}
+.input {
+	padding: 0 16px;
+	width: 100%;
+	height: 40px;
+	color: #2d3748;
+	border: 1px solid #bbc1c9;
+	border-radius: 6px;
+
+	&:focus-visible {
+		border-color: #3182ce;
+		box-shadow: #3182ce 0 0 0 1px;
+		outline: none;
+	}
+
+	&::placeholder {
+		color: #838d99;
+	}
+}
+.submit {
+	flex-shrink: 0;
+	font-weight: 600;
+	font-size: 16px;
+	line-height: 19px;
+	color: #fff;
+	background-color: #296ead;
+	border-radius: 6px;
+	padding: 0 16px;
+}
