@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 };
 
 interface ISearchPage {
-	searchParams: { query: any };
+	searchParams: { query: string };
 }
 
 export const dynamic = "force-dynamic";

@@ -7,7 +7,7 @@ import SearchForm from "@/components/search-form/SearchForm";
 
 interface ISearch {
 	posts: IPostPreview[];
-	query: any;
+	query: string;
 }
 
 const Search: FC<ISearch> = ({ posts, query }) => {
