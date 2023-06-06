@@ -1,29 +1,46 @@
-import { FC } from "react";
+"use client";
+
 import Container from "@/ui/container/Container";
 import PostsList from "@/components/posts-list/PostsList";
-import { IPostPreview } from "@/types/post.interface";
 import Heading from "@/ui/heading/Heading";
 import SearchForm from "@/components/search-form/SearchForm";
+import { PostService } from "@/services/post.service";
+import Loader from "@/components/loader/Loader";
+import { useQuery } from "@tanstack/react-query";
 
 interface ISearch {
-	posts: IPostPreview[];
 	query: string;
 }
 
-const Search: FC<ISearch> = ({ posts, query }) => {
+const Search = ({ query }: ISearch) => {
+	const { data, isLoading, isFetching, error } = useQuery({
+		queryKey: ["hydrate-search", query],
+		queryFn: () => PostService.getBySearch(query),
+	});
+
+	console.log(data);
+
 	return (
 		<div>
 			<Container>
-				<Heading>
-					Поиск
-					{query !== "" && `: «${decodeURIComponent(query)}»`}
-				</Heading>
-				<SearchForm />
-				{posts.length == 0 ? (
-					<div>Статей не найдено</div>
-				) : (
-					<PostsList posts={posts} />
-				)}
+				{error ? (
+					<p>О нет, произошла ошибка</p>
+				) : isLoading || isFetching ? (
+					<Loader />
+				) : data ? (
+					<>
+						<Heading>
+							Поиск
+							{query !== "" && `: «${query}»`}
+						</Heading>
+						<SearchForm />
+						{data.length == 0 ? (
+							<div>Статей не найдено!</div>
+						) : (
+							<PostsList posts={data} />
+						)}
+					</>
+				) : null}
 			</Container>
 		</div>
 	);

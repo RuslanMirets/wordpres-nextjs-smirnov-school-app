@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import { FC } from "react";
 import styles from "./Header.module.scss";
 import clsx from "clsx";
 import Container from "@/ui/container/Container";
@@ -18,7 +17,7 @@ const menuLinks: IMenuLinks[] = [
 	{ title: "Основы CG", url: "/cgb" },
 ];
 
-const Header: FC = () => {
+const Header = () => {
 	const pathname = usePathname();
 
 	return (

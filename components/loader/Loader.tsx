@@ -1,7 +1,8 @@
-import { FC } from "react";
+"use client";
+
 import styles from "./Loader.module.scss";
 
-const Loader: FC = () => {
+const Loader = () => {
 	return <div className={styles.root} />;
 };
 

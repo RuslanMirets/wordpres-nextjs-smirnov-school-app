@@ -1,24 +1,38 @@
-import { FC } from "react";
+"use client";
+
 import styles from "./Post.module.scss";
-import { IPost } from "@/types/post.interface";
 import Heading from "@/ui/heading/Heading";
 import Container from "@/ui/container/Container";
+import { useQuery } from "@tanstack/react-query";
+import { PostService } from "@/services/post.service";
+import Loader from "@/components/loader/Loader";
 
-interface IPostProps {
-	post: IPost;
+interface IPost {
+	slug: string;
 }
 
-const Post: FC<IPostProps> = ({ post }) => {
+const Post = ({ slug }: IPost) => {
+	const { data, isLoading, isFetching, error } = useQuery({
+		queryKey: ["hydrate-post", slug],
+		queryFn: () => PostService.getBySlug(slug),
+	});
+
 	return (
 		<div>
 			<Container>
-				<article>
-					<Heading>{post.title}</Heading>
-					<div
-						className={styles.content}
-						dangerouslySetInnerHTML={{ __html: post.content }}
-					/>
-				</article>
+				{error ? (
+					<p>О нет, произошла ошибка</p>
+				) : isLoading || isFetching ? (
+					<Loader />
+				) : data ? (
+					<article>
+						<Heading>{data.title}</Heading>
+						<div
+							className={styles.content}
+							dangerouslySetInnerHTML={{ __html: data.content }}
+						/>
+					</article>
+				) : null}
 			</Container>
 		</div>
 	);

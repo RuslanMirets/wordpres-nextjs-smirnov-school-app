@@ -1,9 +1,9 @@
 "use client";
 
-import { FC, PropsWithChildren } from "react";
+import { PropsWithChildren } from "react";
 import styles from "./Container.module.scss";
 
-const Container: FC<PropsWithChildren<unknown>> = ({ children }) => {
+const Container = ({ children }: PropsWithChildren) => {
 	return <div className={styles.root}>{children}</div>;
 };
 

@@ -1,8 +1,9 @@
+"use client";
+
 import Container from "@/ui/container/Container";
 import Heading from "@/ui/heading/Heading";
-import { FC } from "react";
 
-const Home: FC = () => {
+const Home = () => {
 	return (
 		<div>
 			<Container>

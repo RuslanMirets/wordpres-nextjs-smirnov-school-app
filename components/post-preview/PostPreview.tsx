@@ -1,6 +1,5 @@
 import Image from "next/image";
 import Link from "next/link";
-import { FC } from "react";
 import styles from "./PostPreview.module.scss";
 import { IPostPreview } from "@/types/post.interface";
 
@@ -8,7 +7,7 @@ interface IPost {
 	post: IPostPreview;
 }
 
-const PostPreview: FC<IPost> = ({ post }) => {
+const PostPreview = ({ post }: IPost) => {
 	return (
 		<Link className={styles.root} href={`/blog/${post.slug}`}>
 			<Image
