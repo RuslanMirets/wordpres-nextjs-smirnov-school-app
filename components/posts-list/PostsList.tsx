@@ -4,11 +4,11 @@ import styles from "./PostsList.module.scss";
 import PostPreview from "../post-preview/PostPreview";
 import { IPostPreview } from "@/types/post.interface";
 
-interface IPostsList {
+type Props = {
 	posts: IPostPreview[];
-}
+};
 
-const PostsList = ({ posts }: IPostsList) => {
+const PostsList = ({ posts }: Props) => {
 	return (
 		<ul className={styles.root}>
 			{posts.map((post) => (

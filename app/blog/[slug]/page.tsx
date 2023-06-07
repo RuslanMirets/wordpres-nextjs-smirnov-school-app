@@ -5,15 +5,13 @@ import Hydrate from "@/utils/hydra.client";
 import { dehydrate } from "@tanstack/react-query";
 import { Metadata } from "next";
 
-interface IPostPage {
+type Props = {
 	params: {
 		slug: string;
 	};
-}
+};
 
-export async function generateMetadata({
-	params,
-}: IPostPage): Promise<Metadata> {
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
 	const post = await PostService.getBySlug(params.slug);
 
 	return {
@@ -21,7 +19,7 @@ export async function generateMetadata({
 	};
 }
 
-const PostPage = async ({ params }: IPostPage) => {
+const PostPage = async ({ params }: Props) => {
 	const queryClient = getQueryClient();
 	await queryClient.prefetchQuery({
 		queryKey: ["hydrate-post", params.slug],

@@ -8,11 +8,11 @@ import { PostService } from "@/services/post.service";
 import Loader from "@/components/loader/Loader";
 import { useQuery } from "@tanstack/react-query";
 
-interface ISearch {
+type Props = {
 	query: string;
-}
+};
 
-const Search = ({ query }: ISearch) => {
+const Search = ({ query }: Props) => {
 	const { data, isLoading, isFetching, error } = useQuery({
 		queryKey: ["hydrate-search", query],
 		queryFn: () => PostService.getBySearch(query),

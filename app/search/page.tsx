@@ -9,11 +9,11 @@ export const metadata: Metadata = {
 	title: "Поиск",
 };
 
-interface ISearchPage {
+type Props = {
 	searchParams: { query: string };
-}
+};
 
-const SearchPage = async ({ searchParams }: ISearchPage) => {
+const SearchPage = async ({ searchParams }: Props) => {
 	const queryClient = getQueryClient();
 	await queryClient.prefetchQuery({
 		queryKey: ["hydrate-search", searchParams.query],

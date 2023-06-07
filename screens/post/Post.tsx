@@ -7,11 +7,11 @@ import { useQuery } from "@tanstack/react-query";
 import { PostService } from "@/services/post.service";
 import Loader from "@/components/loader/Loader";
 
-interface IPost {
+type Props = {
 	slug: string;
-}
+};
 
-const Post = ({ slug }: IPost) => {
+const Post = ({ slug }: Props) => {
 	const { data, isLoading, isFetching, error } = useQuery({
 		queryKey: ["hydrate-post", slug],
 		queryFn: () => PostService.getBySlug(slug),

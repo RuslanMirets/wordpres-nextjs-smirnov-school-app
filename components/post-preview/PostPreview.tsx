@@ -3,11 +3,11 @@ import Link from "next/link";
 import styles from "./PostPreview.module.scss";
 import { IPostPreview } from "@/types/post.interface";
 
-interface IPost {
+type Props = {
 	post: IPostPreview;
-}
+};
 
-const PostPreview = ({ post }: IPost) => {
+const PostPreview = ({ post }: Props) => {
 	return (
 		<Link className={styles.root} href={`/blog/${post.slug}`}>
 			<Image
