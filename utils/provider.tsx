@@ -3,6 +3,7 @@
 import React, { PropsWithChildren } from "react";
 import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import { SessionProvider } from "next-auth/react";
 
 const Providers = ({ children }: PropsWithChildren) => {
 	const [client] = React.useState(
@@ -15,7 +16,7 @@ const Providers = ({ children }: PropsWithChildren) => {
 
 	return (
 		<QueryClientProvider client={client}>
-			{children}
+			<SessionProvider>{children}</SessionProvider>
 			<ReactQueryDevtools initialIsOpen={false} />
 		</QueryClientProvider>
 	);

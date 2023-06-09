@@ -1,3 +1,5 @@
+"use client";
+
 import {
 	FieldValues,
 	FormProvider,
@@ -9,6 +11,7 @@ import { FaGithub } from "react-icons/fa";
 import styles from "./AuthForms.module.scss";
 import Input from "@/ui/input/Input";
 import Button from "@/ui/button/Button";
+import { signIn } from "next-auth/react";
 
 const LoginForm = () => {
 	const methods = useForm<FieldValues>({
@@ -21,20 +24,19 @@ const LoginForm = () => {
 	// const { replace } = useRouter();
 
 	const onSubmit: SubmitHandler<FieldValues> = async (data) => {
-		console.log(data);
-		// await signIn("credentials", {
-		// 	email: data.email,
-		// 	password: data.password,
-		// 	redirect: false,
-		// }).then((callback) => {
-		// 	if (callback?.ok) {
-		// 		// replace("/");
-		// 	}
+		await signIn("credentials", {
+			email: data.email,
+			password: data.password,
+			redirect: false,
+		}).then((callback) => {
+			if (callback?.ok) {
+				// replace("/");
+			}
 
-		// 	if (callback?.error) {
-		// 		console.log(callback.error);
-		// 	}
-		// });
+			if (callback?.error) {
+				console.log(callback.error);
+			}
+		});
 	};
 
 	return (
@@ -52,7 +54,7 @@ const LoginForm = () => {
 			<div className={styles.buttons}>
 				<Button
 					className={styles.googleBtn}
-					onClick={() => {}}
+					onClick={() => signIn("google")}
 					variant="outline"
 					icon={FcGoogle}
 				>
