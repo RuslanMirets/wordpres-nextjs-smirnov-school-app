@@ -43,7 +43,6 @@ export const authOptions: NextAuthOptions = {
 			return session;
 		},
 	},
-	debug: process.env.NODE_ENV === "development",
 	session: { strategy: "jwt" },
 	secret: process.env.NEXTAUTH_SECRET,
 };
